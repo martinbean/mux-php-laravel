@@ -1,0 +1,32 @@
+name: Test
+
+on:
+  push:
+    paths:
+      - '.github/workflows/test.yml'
+      - '**.php'
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        php_version:
+          - '8.2'
+          - '8.3'
+          - '8.4'
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php_version }}
+
+      - name: Install dependencies
+        run: composer install --no-ansi --no-interaction --no-progress --prefer-dist
+
+      - name: Run tests
+        run: composer run-script test

@@ -1,0 +1,70 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "martinbean/mux-php-laravel",
+    "description": "Laravel wrapper for the official Mux PHP SDK.",
+    "version": "1.0.0",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "mux",
+        "php",
+        "video"
+    ],
+    "readme": "README.md",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Bean",
+            "homepage": "https://martinbean.dev"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/martinbean/mux-php-laravel/issues",
+        "source": "https://github.com/martinbean/mux-php-laravel"
+    },
+    "funding": [
+        {
+            "type": "other",
+            "url": "https://buymeacoffee.com/martinbean"
+        }
+    ],
+    "require": {
+        "illuminate/http": "^11.0",
+        "illuminate/routing": "^11.0",
+        "illuminate/support": "^11.0",
+        "muxinc/mux-php": "^3.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.6",
+        "squizlabs/php_codesniffer": "^3.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "MartinBean\\Laravel\\Mux\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MartinBean\\Laravel\\Mux\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "lint": "phpcs --standard=PSR12 src",
+        "test": "phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MartinBean\\Laravel\\Mux\\MuxServiceProvider"
+            ]
+        }
+    }
+}
