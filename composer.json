@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "martinbean/mux-php-laravel",
     "description": "Laravel wrapper for the official Mux PHP SDK.",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "type": "library",
     "keywords": [
         "laravel",
@@ -29,13 +29,13 @@
         }
     ],
     "require": {
-        "illuminate/http": "^11.0",
-        "illuminate/routing": "^11.0",
-        "illuminate/support": "^11.0",
+        "illuminate/http": "^11.0|^12.0",
+        "illuminate/routing": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0",
         "muxinc/mux-php": "^3.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^9.6",
+        "orchestra/testbench": "^10.0",
         "squizlabs/php_codesniffer": "^3.11"
     },
     "autoload": {
