@@ -22,6 +22,8 @@ class MuxServiceProvider extends ServiceProvider
     {
         $this->configurePublishing();
         $this->configureRouting();
+        $this->configureViewNamespace();
+        $this->configureBladeComponentNamespace();
     }
 
     /**
@@ -56,5 +58,23 @@ class MuxServiceProvider extends ServiceProvider
     protected function configureRouting(): void
     {
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+    }
+
+    /**
+     * Configure view namespace for the package.
+     */
+    protected function configureViewNamespace(): void
+    {
+        $this->app->make('view')->addNamespace('mux', [
+            __DIR__ . '/../resources/views',
+        ]);
+    }
+
+    /**
+     * Configure Blade component namespace for the package.
+     */
+    protected function configureBladeComponentNamespace(): void
+    {
+        $this->app->make('blade.compiler')->componentNamespace('MartinBean\\Laravel\\Mux\\View\\Components', 'mux');
     }
 }

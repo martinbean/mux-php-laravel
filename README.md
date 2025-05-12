@@ -92,6 +92,45 @@ This is where you would update models, etc in your application based on events f
 + }
 ```
 
+### Mux Player
+The package contains a Blade view component that makes displaying your Mux videos easy.
+
+The only required property is a `playback-id` (in the case that the video has a “public” playback policy):
+
+```blade
+<x-mux::player playback-id="YOUR_PLAYBACK_ID" />
+```
+
+If your video has a “signed” playback policy, then you can provide the `playback_token` attribute:
+
+```blade
+<x-mux::player
+    playback-id="YOUR_PLAYBACK_ID"
+    playback-token="YOUR_PLAYBACK_TOKEN"
+/>
+```
+
+In fact, any attributes are passed to the underlying Mux Player instance, so you can specify any other documented attributes such as metadata keys:
+
+```blade
+<x-mux::player
+    playback-id="YOUR_PLAYBACK_ID"
+    playback-token="YOUR_PLAYBACK_TOKEN"
+    metadata-video-id="{{ $video->id }}"
+    metadata-video-title="{{ $video->title }}"
+    metadata-viewer-id="{{ Auth::id() }}"
+/>
+```
+
+#### Manually including the Mux Player JavaScript library
+By default, the `<x-mux::player>` component will include the required Mux Player JavaScript library from the jsDeliver CDN. If you do not want this, because maybe you’re installing Mux Player via a package such as npm or Yarn and building it with [Vite](https://laravel.com/docs/vite), then you can pass the `no-script` attribute. You _will_ then need to make sure you’re including the Mux Player JavaScript yourself:
+
+```blade
+@vite('resources/js/player.js')
+
+<x-mux::player no-script playback-id="YOUR_PLAYBACK_ID" />
+```
+
 ## Contribution
 Contributions are always welcome. Please open a pull request with your proposed changes, with accompanying tests.
 
